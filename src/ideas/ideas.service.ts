@@ -21,12 +21,12 @@ export class IdeasService {
     }
 
     async showAll(): Promise<IdeasRO[]> {
-        const ideas = await this.resp.find({ relations: ['author'] });
+        const ideas = await this.resp.find({ relations: ['author', 'comment'] });
         return ideas.map(idea => this.responseObject(idea));
     }
 
     async read(id: string): Promise<IdeasRO> {
-        const idea = await this.resp.findOne({ where: { id }, relations: ['author'] });
+        const idea = await this.resp.findOne({ where: { id }, relations: ['author', 'comment'] });
         if (!idea) {
             throw new HttpException('Not Found', HttpStatus.NOT_FOUND);
         }
@@ -47,12 +47,12 @@ export class IdeasService {
         }
         this.ensureOwnerShip(idea, userId);
         await this.resp.update({ id }, data);
-        idea = await this.resp.findOne({ where: { id }, relations: ['author'] });
+        idea = await this.resp.findOne({ where: { id }, relations: ['author', 'comment'] });
         return this.responseObject(idea);
     }
 
     async delete(id: string, userId: string) {
-        const idea = await this.resp.findOne({ where: { id }, relations: ['author'] });
+        const idea = await this.resp.findOne({ where: { id }, relations: ['author', 'comment'] });
         if (!idea) {
             throw new HttpException('Not Found', HttpStatus.NOT_FOUND);
         }

@@ -12,6 +12,12 @@ export class UserController {
         return this.service.showAll();
     }
 
+    @Get('auth/whoami')
+  @UseGuards(new AuthGuard())
+  showMe(@User('username') username: string) {
+    return this.service.read(username);
+  }
+
     @Post('login')
     login(@Body() data: UserDTO) {
         return this.service.login(data);

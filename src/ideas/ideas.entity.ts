@@ -1,5 +1,6 @@
-import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn, OneToMany } from 'typeorm';
 import { UserEntity } from '../user/user.entity';
+import { CommentEntity } from '../comment/comment.entity';
 
 @Entity('ideas')
 export class IdeasEntity {
@@ -15,4 +16,7 @@ export class IdeasEntity {
 
     @ManyToOne(type => UserEntity, author => author.ideas)
     author: UserEntity;
+
+    @OneToMany(type => CommentEntity, comment => comment.idea, {cascade: true})
+    comment: CommentEntity[];
 }
