@@ -73,3 +73,22 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
   Nest is [MIT licensed](LICENSE).
+  # App Ideas App
+
+A place to see and post ideas in the style of reddit and twitter
+
+## User Stories
+
+- Authenticate users
+- Users can CRUD ideas
+- Users can bookmark ideas
+- Users can comment on ideas
+- Ideas can be seen in realtime
+
+## Stack
+
+- Database - PostgreSQL
+- REST API - NestJS
+- GraphQL API - NestJS
+- Rest Frontend - Angular with NGRX
+
